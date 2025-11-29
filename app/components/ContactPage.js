@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 const ContactPage = () => {
   const [formData, setFormData] = useState({
     name: '',
+    number: '',
     email: '',
     message: ''
   })
@@ -36,7 +37,7 @@ const ContactPage = () => {
 
       if (response.ok) {
         setSubmitMessage('Message sent successfully!')
-        setFormData({ name: '', email: '', message: '' })
+        setFormData({ name: '', number: '', email: '', message: '' })
       } else {
         setSubmitMessage('Failed to send message. Please try again.')
       }
@@ -49,65 +50,99 @@ const ContactPage = () => {
   }
 
   return (
-    <div>
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Contact Me</h2>
-          <div className="max-w-md mx-auto">
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                />
+    <div className='contact-wrapper  w-full flex justify-center  '>
+
+      <div className="contact-wrapper rounded-4xl w-7xl">
+        {/* Contact Section */}
+        <section id="contact" className="contact-section">
+          <div className="container">
+            <div className="contact-header">
+              <h2 className="contact-title">Contact Me</h2>
+              <div className="contact-subtitle">
+                Let's work together on your next project
               </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
-              </button>
-            </form>
-            {submitMessage && (
-              <p className={`mt-4 text-center ${submitMessage.includes('successfully') ? 'text-green-600' : 'text-red-600'}`}>
-                {submitMessage}
-              </p>
-            )}
+            </div>
+
+            <div className="contact-content">
+              <form onSubmit={handleSubmit} className="contact-form">
+                <div className="form-group">
+                  <label htmlFor="name" className="form-label">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                    placeholder="Your full name"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="number" className="form-label">Phone Number</label>
+                  <input
+                    type="tel"
+                    id="number"
+                    name="number"
+                    value={formData.number}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                    placeholder="Your phone number"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="email" className="form-label">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="message" className="form-label">Message</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    className="form-textarea"
+                    placeholder="Tell me about your project..."
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="contact-submit-btn"
+                >
+                  <span className="btn-text">
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                  </span>
+                  <i className="fas fa-paper-plane btn-icon"></i>
+                </button>
+              </form>
+
+              {submitMessage && (
+                <div className={`contact-message ${submitMessage.includes('successfully') ? 'success' : 'error'}`}>
+                  <i className={`fas ${submitMessage.includes('successfully') ? 'fa-check-circle' : 'fa-exclamation-circle'}`}></i>
+                  {submitMessage}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
   )
 }

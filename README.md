@@ -34,3 +34,18 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## LLM / Claude Integration
+
+This project can default to `claude-haiku-4.5` for LLM calls. Steps to enable:
+
+- Copy `.env.example` to `.env.local` and set `ANTHROPIC_API_KEY`.
+- The code uses `lib/llm.js` which reads `DEFAULT_LLM` (defaults to `claude-haiku-4.5`).
+- Example `.env.local` entries:
+
+```
+DEFAULT_LLM=claude-haiku-4.5
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+```
+
+Use `require('./lib/llm').getModel()` to read the default model, or `callLLM(prompt)` to call Claude.
