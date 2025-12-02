@@ -1,8 +1,7 @@
 "use client"
 import React, { useRef, useState, useEffect } from 'react';
 import Video from 'next-video';
-
-const HomeVideo = '/videos/hero-video.mp4';
+import HomeVideo from "@/videos/hero-video.mp4"
 
 const VideoPlayer = () => {
   const videoRef = useRef(null);
@@ -64,7 +63,7 @@ const VideoPlayer = () => {
 
   return (
     <div>
-      <video
+      <Video
         src= {HomeVideo}
         ref={videoRef}
         autoPlay

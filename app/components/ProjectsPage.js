@@ -1,19 +1,29 @@
 "use client"
 import React, { useState, useEffect } from 'react'
 import Video from 'next-video';
+import AiVideoBollywood from "@/videos/AI Bollywood Song.mp4"
+import AiCartoon from "@/videos/AI Cartoon Video.mp4"
+import AiGod from "@/videos/AI God Video.mp4"
+import Compositing from "@/videos/Compositing.mp4"
+import Paint from "@/videos/Paint & Cleanup.mp4"
+import Rotoscoping from "@/videos/Rotoscoping.mp4"
+import Unreal from "@/videos/UE Enviroment.mp4"
+import VfxShowreel from "@/videos/VFX Showreel.mp4"
+
+
 const ProjectsPage = () => {
   const [selectedVideo, setSelectedVideo] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
 
   const videos = [
-    { title: 'AI Bollywood Song', file: 'AI Bollywood Song.mp4'},
-    { title: 'AI Cartoon Video', file: 'AI Cartoon Video.mp4'},
-    { title: 'AI God Video', file: 'AI God Video.mp4'},
-    { title: 'Compositing', file: 'Compositing.mp4'},
-    { title: 'Paint & Cleanup', file: 'Paint & Cleanup.mp4'},
-    { title: 'Rotoscoping', file: 'Rotoscoping.mp4', },
-    { title: 'UE Environment', file: 'UE Enviroment.mp4' },
-    { title: 'VFX Showreel', file: 'VFX Showreel.mp4'}
+    { title: 'AI Bollywood Song', file: 'AI Bollywood Song.mp4', fileimport: AiVideoBollywood},
+    { title: 'AI Cartoon Video', file: 'AI Cartoon Video.mp4',fileimport: AiCartoon},
+    { title: 'AI God Video', file: 'AI God Video.mp4',fileimport: AiGod},
+    { title: 'Compositing', file: 'Compositing.mp4',fileimport: Compositing},
+    { title: 'Paint & Cleanup', file: 'Paint & Cleanup.mp4',fileimport: Paint},
+    { title: 'Rotoscoping', file: 'Rotoscoping.mp4',fileimport: Rotoscoping},
+    { title: 'UE Environment', file: 'UE Enviroment.mp4',fileimport: Unreal},
+    { title: 'VFX Showreel', file: 'VFX Showreel.mp4',fileimport: VfxShowreel}
   ]
 
   useEffect(() => {
@@ -114,8 +124,8 @@ const ProjectsPage = () => {
 
               {/* Video Player */}
               <div className="p-6">
-                <video
-                  src={`/videos/${selectedVideo.file}`}
+                <Video
+                  src={selectedVideo.fileimport}
                   controls
                   className="w-full rounded-xl shadow-lg"
                   autoPlay
