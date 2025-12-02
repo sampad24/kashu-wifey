@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from 'react'
-
+import Video from 'next-video';
 const ProjectsPage = () => {
   const [selectedVideo, setSelectedVideo] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)

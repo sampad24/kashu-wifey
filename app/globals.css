@@ -2973,11 +2973,18 @@ body.loading .hero-image {
 /* Volume Slider */
 .volume-slider {
     -webkit-appearance: none;
+    display: flexbox;
+    justify-content: center;
+    
     appearance: none;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     outline: none;
     transition: all var(--transition-normal);
+    visibility: visible;
+    position: absolute;
+    bottom: 10%;
+    right: 2%;
 }
 
 .volume-slider::-webkit-slider-thumb {

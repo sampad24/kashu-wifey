@@ -1,5 +1,8 @@
 "use client"
 import React, { useRef, useState, useEffect } from 'react';
+import Video from 'next-video';
+
+const HomeVideo = '/videos/hero-video.mp4';
 
 const VideoPlayer = () => {
   const videoRef = useRef(null);
@@ -20,6 +23,10 @@ const VideoPlayer = () => {
     if (videoRef.current) {
       videoRef.current.volume = newVolume;
       setVolume(newVolume);
+      if (isMuted) {
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      }
     }
   };
 
@@ -58,7 +65,7 @@ const VideoPlayer = () => {
   return (
     <div>
       <video
-        src="/videos/hero-video.mp4"
+        src= {HomeVideo}
         ref={videoRef}
         autoPlay
         loop
@@ -66,9 +73,9 @@ const VideoPlayer = () => {
         controls={false}
         className="video-background"
         muted={isMuted}
-      />
+        />
 
-      <div className="volume-btn space-x-4">
+      <div className=" volume-btn space-x-4">
         <input
           type="range"
           min="0"
@@ -80,7 +87,7 @@ const VideoPlayer = () => {
         />
         <button
           onClick={toggleMute}
-          className="btn-back1 px-4 py-2 rounded-xl"
+          className=" px-4 py-2 rounded-xl"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" className="bi bi-volume-up" viewBox="0 0 16 16">
             <path d="M11.536 14.01A8.47 8.47 0 0 0 14.026 8a8.47 8.47 0 0 0-2.49-6.01l-.708.707A7.48 7.48 0 0 1 13.025 8c0 2.071-.84 3.946-2.197 5.303z" />
