@@ -4,34 +4,41 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    number: '',
-    email: '',
-    message: ''
-  })
+  const [name, setName] = useState('')
+  const [number, setNumber] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitMessage, setSubmitMessage] = useState('')
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    const formData = {
+      name,
+      number,
+      email,
+      message,
+    };
+
     setIsSubmitting(true)
     setSubmitMessage('')
 
     try {
-      const response = await axios.post("/api/contact", formData)
+      const response = await axios.post("/api/contact", formData);
       setSubmitMessage('Message sent successfully!')
-      setFormData({ name: '', number: '', email: '', message: '' })
+      setName('')
+      setNumber('')
+      setEmail('')
+      setMessage('')
     } catch (error) {
       console.error('Error:', error)
       setSubmitMessage('An error occurred. Please try again.')
+      if (error.response && error.response.data && error.response.data.msg) {
+        setSubmitMessage(error.response.data.msg.join(", "));
+      } else {
+        setSubmitMessage("Failed to submit form. Please try again.");
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -59,8 +66,8 @@ const ContactPage = () => {
                     type="text"
                     id="name"
                     name="name"
-                    value={formData.name}
-                    onChange={handleChange}
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     required
                     className="form-input"
                     placeholder="Your full name"
@@ -73,8 +80,8 @@ const ContactPage = () => {
                     type="tel"
                     id="number"
                     name="number"
-                    value={formData.number}
-                    onChange={handleChange}
+                    value={number}
+                    onChange={(e) => setNumber(e.target.value)}
                     required
                     className="form-input"
                     placeholder="Your phone number"
@@ -87,8 +94,8 @@ const ContactPage = () => {
                     type="email"
                     id="email"
                     name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     required
                     className="form-input"
                     placeholder="your.email@example.com"
@@ -101,8 +108,8 @@ const ContactPage = () => {
                     id="message"
                     name="message"
                     rows="5"
-                    value={formData.message}
-                    onChange={handleChange}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     required
                     className="form-textarea"
                     placeholder="Tell me about your project..."
