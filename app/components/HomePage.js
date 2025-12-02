@@ -5,6 +5,8 @@ import Image from 'next/image'
 import VideoPlayer from "../api/VideoPlayer.jsx"
 import './home.css'
 
+
+
 const HomePage = () => {
   const [displayText, setDisplayText] = useState('')
   const [showCursor, setShowCursor] = useState(true)

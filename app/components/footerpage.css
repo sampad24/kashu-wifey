@@ -186,13 +186,13 @@
 
 .copyright {
   margin: 0 0 5px 0;
-  font-size: 14px;
+  font-size: 1.1rem;
   color: #ccc;
 }
 
 .developer {
   margin: 0;
-  font-size: 12px;
+  font-size: 1rem;
   color: #888;
   font-style: italic;
 }
@@ -212,11 +212,11 @@
   }
 
   .copyright {
-    font-size: 13px;
+    font-size: 0.9rem;
   }
 
   .developer {
-    font-size: 11px;
+    font-size: 0.8rem;
   }
 }
 
