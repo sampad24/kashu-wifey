@@ -78,7 +78,6 @@ const Navbar = () => {
             <li><Link href="/service" className="nav-link" onClick={() => setMenuOpen(false)}>Service</Link></li>
             <li><Link href="/showreel" className="nav-link" onClick={() => setMenuOpen(false)}>Showreel</Link></li>
             <li><Link href="/about" className="nav-link" onClick={() => setMenuOpen(false)}>About</Link></li>
-            <li><Link href="/contact" className="nav-link" onClick={() => setMenuOpen(false)}>Contact</Link></li>
           </ul>
           <button className={`mobile-menu-toggle ${menuOpen ? 'active' : ''}`} onClick={toggleMenu}>
             <span></span>
